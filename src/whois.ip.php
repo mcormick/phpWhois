@@ -95,7 +95,7 @@ class ip_handler extends WhoisClient {
 
                 if ($p !== false) {
                     $net = strtok(substr($line, $p + 1), ') ');
-                    list($low, $high) = explode('-', str_replace(' ', '', substr($line, $p + strlen($net) + 3)));
+                    @list($low, $high) = explode('-', str_replace(' ', '', substr($line, $p + strlen($net) + 3)));
 
                     if (!isset($done[$net]) && $ip >= ip2long($low) && $ip <= ip2long($high)) {
                         $owner = substr($line, 0, $p - 1);
@@ -108,8 +108,8 @@ class ip_handler extends WhoisClient {
                             $presults[] = $this->getRawData($net);
                             $done[$net] = 1;
                         }
+                        $found = true;
                     }
-//                    $found = true;
                 }
             }
 
