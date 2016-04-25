@@ -446,6 +446,7 @@ class WhoisClient
 
             // Connect to whois port
             $ptr = @fsockopen($server, $port, $errno, $errstr, $this->stimeout);
+            // Going to rewrite this to support multiple source IPs
 
             if ($ptr > 0) {
                 $this->query['status'] = 'ok';
